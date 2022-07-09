@@ -23,6 +23,9 @@ public class Owner {
     private long productId;
     @Column(name = "productName")
     private String productName;
+    @Column(name = "productDescription")
+    private String productDescription;
+
 }
 
 

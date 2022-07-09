@@ -1,9 +1,11 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+
 import ListOwner from './components/ListOwner';
 import CreateOwner from './components/CreateOwner';
 import Header from './components/Header';
 import Footer from './components/Footer';
+
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 
 function App() {
   return (
