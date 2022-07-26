@@ -22,12 +22,14 @@ public class OwnerController {
     // get all owners
     @GetMapping("/owners")
     public List<Owner> getAllOwners(){
+
         return ownerRepository.findAll();
     }
 
     // create owner
     @PostMapping("/owners")
     public Owner createOwner(@RequestBody Owner owner){
+
         return ownerRepository.save(owner);
     }
 
