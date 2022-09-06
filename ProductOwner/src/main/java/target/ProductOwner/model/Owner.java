@@ -19,12 +19,16 @@ public class Owner {
 
     @Column(name = "ownerName")
     private String ownerName;
+
     @Column(name = "productId")
     private long productId;
+
     @Column(name = "productName")
     private String productName;
+
     @Column(name = "productDescription")
     private String productDescription;
+
 
 }
 

@@ -20,7 +20,7 @@ public class OwnerController {
     private OwnerRepository ownerRepository;
 
     // get all owners
-    @GetMapping("/owners")
+    @GetMapping("/owners/")
     public List<Owner> getAllOwners(){
 
         return ownerRepository.findAll();
@@ -29,7 +29,6 @@ public class OwnerController {
     // create owner
     @PostMapping("/owners")
     public Owner createOwner(@RequestBody Owner owner){
-
         return ownerRepository.save(owner);
     }
 
@@ -69,48 +68,10 @@ public class OwnerController {
         return ResponseEntity.ok(response);
     }
 
-    // get all products for an owner id
-    @GetMapping("/owners/{id}/products")
-    public List<Owner> getAllProducts(@PathVariable Long id){
-        return ownerRepository.findAll();
-    }
-
-    // create product by product id
-    @PutMapping("/owners/{id}/products/{productId}")
-    public ResponseEntity<Owner> updateProduct(@PathVariable Long id, @PathVariable Long productId, @RequestBody Owner ownerDetails){
-        Owner owner = ownerRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("Owner does not exist with id: "+ id)
-        );
-
-        owner.setProductId(productId);
-        owner.setProductName(ownerDetails.getProductName());
-        owner.setProductDescription(ownerDetails.getProductDescription());
-
-        Owner updatedOwner = ownerRepository.save(owner);
-        return ResponseEntity.ok(updatedOwner);
-    }
-
-    // get product by product id
-    @GetMapping("/owners/{id}/products/{productId}")
-    public ResponseEntity<Owner> getProductById(@PathVariable Long id, @PathVariable Long productId){
-        Owner owner = ownerRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("Owner does not exist with id: "+ id)
-        );
-
+    @GetMapping("/owners/product/{id}")
+    public ResponseEntity<Owner> getOwnerByProductId(@PathVariable Long id){
+        Owner owner = (Owner) ownerRepository.findByProductId(id);
         return ResponseEntity.ok(owner);
     }
 
-    @PostMapping("/owners/{id}/products/{productId}")
-    public ResponseEntity<Owner> createProduct(@PathVariable Long id, @PathVariable Long productId, @RequestBody Owner ownerDetails){
-        Owner owner = ownerRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("Owner does not exist with id: "+ id)
-        );
-
-        owner.setProductId(productId);
-        owner.setProductName(ownerDetails.getProductName());
-        owner.setProductDescription(ownerDetails.getProductDescription());
-
-        Owner updatedOwner = ownerRepository.save(owner);
-        return ResponseEntity.ok(updatedOwner);
-    }
 }
